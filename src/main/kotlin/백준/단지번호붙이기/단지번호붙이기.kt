@@ -19,6 +19,7 @@ fun main() = with(System.`in`.bufferedReader()) {
         var count = 0
         val queue: Queue<Node> = LinkedList()
         queue.offer(Node(x, y))
+        // 처음 시작하는 부분을 2로 바꾸고 시작한다.
         maps[x][y] = 2
         count += 1
         while (queue.isNotEmpty()) {
