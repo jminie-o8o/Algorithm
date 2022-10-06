@@ -11,7 +11,7 @@ fun main() = with(System.`in`.bufferedReader()) {
     val case = readLine()!!.toInt()
     repeat(case) {
         val (m, n, k) = readLine()!!.split(" ").map { it.toInt() }
-        val map = Array(m) { Array(n) { 0 } }
+        val map = Array(m) { Array(n) { 0 } } // 0으로 이루어진 2차원 배열 작성
         var answer = 0
 
         // 배추 위치 찍기
@@ -30,6 +30,7 @@ fun main() = with(System.`in`.bufferedReader()) {
                     val nx = current.x + dx[d]
                     val ny = current.y + dy[d]
 
+                    // 벌레가 지나갈 수 없는 곳은 continue
                     if (nx < 0 || nx >= m || ny < 0 || ny >= n || map[nx][ny] != 1) continue
 
                     // 벌레가 지나갈 수 있는 곳은 모두 2로 바꾸어준다.
