@@ -1,9 +1,9 @@
 package 백준.`하노이 탑`
 
 fun main() = with(System.`in`.bufferedReader()) {
-    val n = readLine()!!.toInt()
     val sb = StringBuilder()
     var count = 0
+    val n = readLine()!!.toInt()
     fun hanoi(roundCount: Int, start: Int, target: Int, assist: Int) {
         if (roundCount == 1) {
             sb.append("$start $target\n")
