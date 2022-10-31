@@ -21,3 +21,8 @@ fun isPrime(n: Int): Boolean {
     }
     return true
 }
+
+fun isPrime2(num: Int): Boolean {
+    if (num <= 1) return false
+    return (2..sqrt(num.toDouble()).toInt()).none { num % it == 0 }
+}
