@@ -5,12 +5,12 @@ import java.util.*
 data class Point(val row: Int, val col: Int, val distance: Int)
 
 fun solution(places: Array<Array<String>>): IntArray {
-    var answer = mutableListOf<Int>()
+    val answer = IntArray(5)
     for (i in (0..4)) {
-        if (check(places[i])) answer.add(1)
-        else answer.add(0)
+        if (check(places[i])) answer[i] = 1
+        else answer[i] = 0
     }
-    return answer.toIntArray()
+    return answer
 }
 
 fun check(place: Array<String>): Boolean {
@@ -29,7 +29,7 @@ fun bfs(place: Array<String>, row: Int, col: Int): Boolean {
     visited[row][col] = true // 방문한 위치를 true 로 변경해준다.
     val queue: Queue<Point> = LinkedList() // BFS 를 위한 큐
     val dx = intArrayOf(1, 0, -1, 0) // 다음 x좌표 계산을 위한 (상 우 하 좌) 중 (상, 하) 계산
-    val dy = intArrayOf(0, 1, 0, -1) // 다음 x좌표 계산을 위한 (상 우 하 좌) 중 (좌, 우) 계산
+    val dy = intArrayOf(0, 1, 0, -1) // 다음 y좌표 계산을 위한 (상 우 하 좌) 중 (좌, 우) 계산
     queue.add(Point(row, col, 0))
 
     while (queue.isNotEmpty()) {
