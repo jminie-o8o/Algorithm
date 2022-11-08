@@ -28,23 +28,19 @@ class Solution {
     }
 
     fun solution(orders: Array<String>, course: IntArray): Array<String> {
-        var answer = mutableListOf<String>()
-        for (i in (0..10)) { foodMaps.add(HashMap()) }
+        val answer = mutableListOf<String>()
+        for (i in (0..10)) foodMaps.add(HashMap())
         orders.forEach { str ->
             val sortCharList = str.toList().sorted()
             comb(sortCharList, 0, StringBuilder())
         }
-        println(foodMaps)
-        println(maxCnt.contentToString())
         for (len in course) {
             for (entry in foodMaps[len]) {
-                println(entry)
-                if (entry.value >= 2 && entry.value == maxCnt[len]) {
+                if (entry.value >= 2 && entry.value == maxCnt[len]) { // value 가 2를 넘으면서 maxCnt 값과 같은 것의 key 를 넣어준다.
                     answer.add(entry.key)
                 }
             }
         }
-        println(answer.sorted())
         return answer.sorted().toTypedArray()
     }
 }
