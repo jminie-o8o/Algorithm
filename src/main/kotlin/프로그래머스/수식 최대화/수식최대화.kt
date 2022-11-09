@@ -22,7 +22,7 @@ fun solution(expression: String): Long {
 
 fun dfs(expression: String, depth: Int, case: Array<Char>): Long {
     // 탈출조건
-    if (depth > 2) return expression.toLong()
+    if (expression.isLong()) return expression.toLong()
 
     // 수행조건
     val tokens = expression.split(case[depth])
@@ -44,6 +44,15 @@ fun calc(a: Long, b: Long, op: Char): Long {
         '-' -> a - b
         '*' -> a * b
         else -> throw IllegalArgumentException()
+    }
+}
+
+fun String.isLong(): Boolean {
+    return try {
+        this.toLong()
+        true
+    } catch (e: Exception) {
+        false
     }
 }
 
