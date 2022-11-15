@@ -1,6 +1,5 @@
 package 백준.N과M
 
-
 val check = BooleanArray(10) // 어떤 수를 사용한 수인지 사용하지 않은 수인지
 val result = IntArray(10) // 수열 저장
 val sb = StringBuilder()
