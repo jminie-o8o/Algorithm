@@ -14,7 +14,7 @@ val dy = intArrayOf(1, -1, 0, 0)
 // prevX = 이전 선택 칸의 행 번호
 // selected = 선택한 칸의 개수
 // sum = 선택한 칸의 합
-fun dfs(prevX: Int, selected: Int, sum: Int) {
+fun dfs(prevX: Int, prevY: Int, selected: Int, sum: Int) {
     // 탈출조건
     if (selected == k) {
         if (ans < sum) ans = sum
@@ -23,7 +23,7 @@ fun dfs(prevX: Int, selected: Int, sum: Int) {
 
     // 수행조건
     for (x in prevX until n) {
-        for (y in 0 until m) {
+        for (y in (if (x == prevX) prevY else 0) until m) {
             if (check[x][y]) continue // 중복선택인지 아닌지 검사
             var ok = true // 선택 가능하면 true, 아니면 false
             // 인접한 네 방향에 대해 검사해서 ok = false 로 바꾸어 줌
@@ -36,7 +36,7 @@ fun dfs(prevX: Int, selected: Int, sum: Int) {
             }
             if (ok) {
                 check[x][y] = true
-                dfs(x, selected + 1, sum + arr[x][y])
+                dfs(x, y, selected + 1, sum + arr[x][y])
                 check[x][y] = false
             }
         }
@@ -53,6 +53,6 @@ fun main() {
             arr[i][j] = sc.nextInt()
         }
     }
-    dfs(0, 0, 0)
+    dfs(0, 0, 0, 0)
     println(ans)
 }
