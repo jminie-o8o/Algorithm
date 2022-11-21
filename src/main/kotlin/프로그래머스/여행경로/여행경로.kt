@@ -17,6 +17,7 @@ class Solution {
                 stack.add("ICN"); stack.add(tickets[i][1]) // Stack 에 ICN 과 도착지를 넣어준다.
                 check[i] = true // 스택에 넣어준 티켓 위치는 true 로 바꾸어준다.
                 dfs(tickets, 1) // dfs 함수에 tickets 리스트와 depth 1 을 매개변수로 실행
+                check[i] = false
                 stack.pop(); stack.pop()
             }
         }
@@ -49,20 +50,20 @@ class Solution {
 fun main() {
     Solution().solution(
         arrayOf(
+            arrayOf("ICN", "JFK"),
             arrayOf("HND", "IAD"),
-            arrayOf("JFK", "HND"),
-            arrayOf("ICN", "JFK")
+            arrayOf("JFK", "HND")
         )
     )
 
 
-    Solution().solution(
-        arrayOf(
-            arrayOf("ICN", "SFO"),
-            arrayOf("ICN", "ATL"),
-            arrayOf("SFO", "ATL"),
-            arrayOf("ATL", "ICN"),
-            arrayOf("ATL", "SFO")
-        )
-    )
+//    Solution().solution(
+//        arrayOf(
+//            arrayOf("ICN", "SFO"),
+//            arrayOf("ICN", "ATL"),
+//            arrayOf("SFO", "ATL"),
+//            arrayOf("ATL", "ICN"),
+//            arrayOf("ATL", "SFO")
+//        )
+//    )
 }

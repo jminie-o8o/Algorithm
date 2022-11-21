@@ -7,7 +7,7 @@ val check = Array(10) { BooleanArray(10) }
 var n = 0
 var m = 0
 var k = 0
-var ans = -2147483647
+var ans = Int.MIN_VALUE
 val dx = intArrayOf(0, 0, 1, -1)
 val dy = intArrayOf(1, -1, 0, 0)
 
@@ -25,15 +25,17 @@ fun dfs(prevX: Int, prevY: Int, selected: Int, sum: Int) {
     for (x in prevX until n) {
         for (y in (if (x == prevX) prevY else 0) until m) {
             if (check[x][y]) continue // 중복선택인지 아닌지 검사
+
+            // 인접한 네 방향에 대해 검사해서 ok = false 로 바꾸어 주는 부분
             var ok = true // 선택 가능하면 true, 아니면 false
-            // 인접한 네 방향에 대해 검사해서 ok = false 로 바꾸어 줌
             for (i in 0..3) {
                 val nx = x + dx[i]
                 val ny = y + dy[i]
                 if (nx in 0 until n && ny in 0 until m) {
-                    if (check[nx][ny]) ok = false
+                    if (check[nx][ny]) ok = false // 인접한 칸을 선택한 적이 있으면 선택 불가로 만들어줌
                 }
             }
+
             if (ok) {
                 check[x][y] = true
                 dfs(x, y, selected + 1, sum + arr[x][y])
@@ -53,6 +55,7 @@ fun main() {
             arr[i][j] = sc.nextInt()
         }
     }
+    println(arr[1][0])
     dfs(0, 0, 0, 0)
     println(ans)
 }

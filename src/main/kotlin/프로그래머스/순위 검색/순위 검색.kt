@@ -27,14 +27,14 @@ fun solution(info: Array<String>, query: Array<String>): IntArray {
     }
     // 2. HashMap 의 Value 를 오름차순으로 정렬한다.
     map.values.map { it.sort() }
-
+    println(map)
     // 3. query 조건에 맞는 지원자를 가져온다.
     val answer = mutableListOf<Int>()
     for (q in query) {
         val data = q.split(" and ", " ").toMutableList()
+        println(data)
         val target = data.removeLast().toInt()
         val key = data.joinToString(" ")
-
         if (map.containsKey(key)) {
             val list = map[key]
             // 4. 이분탐색을 통해 lower-bound 를 찾는다.
@@ -53,7 +53,6 @@ fun solution(info: Array<String>, query: Array<String>): IntArray {
             answer.add(0)
         }
     }
-    println(answer)
     return answer.toIntArray()
 }
 
