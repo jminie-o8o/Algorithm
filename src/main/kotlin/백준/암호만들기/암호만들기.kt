@@ -27,6 +27,7 @@ fun go(n: Int, alpha: List<String>, password: String, index: Int) {
         return
     }
     // 불가능한 경우 (더 이상 선택할 수 있는 알파벳이 없으면 재귀함수 호출 불가능)
+    // 이 부분이 없으면 인덱스에러 발생
     if (index >= alpha.size) return
     go(n, alpha, password + alpha[index], index + 1) // i 번째 알파벳을 사용하는 경우
     go(n, alpha, password, index + 1) // i 번째 알파벳을 사용하지 않는 경우
