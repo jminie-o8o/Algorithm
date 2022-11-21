@@ -10,14 +10,15 @@ fun main() = with(System.`in`.bufferedReader()) {
     val (L, C) = readLine()!!.split(" ").map { it.toInt() }
     val temp = readLine()!!.split(" ")
     val arr = temp.sorted()
-    go(L, arr, "", 0)
+    val sb = StringBuilder()
+    go(L, arr, sb, 0)
 }
 
 // n : 만들어야 하는 암호의 길이
 // alpha : 사용할 수 있는 알파벳
 // password : 현재까지 만든 암호
 // index : 사용할지 말지 결정해야 하는 알파벳의 인덱스
-fun go(n: Int, alpha: List<String>, password: String, index: Int) {
+fun go(n: Int, alpha: List<String>, password: StringBuilder, index: Int) {
     // 정답을 찾은 경우
     if (password.length == n) {
         // check 함수는 최소 한개의 모음과 최소 두개의 자음을 검사
@@ -29,11 +30,12 @@ fun go(n: Int, alpha: List<String>, password: String, index: Int) {
     // 불가능한 경우 (더 이상 선택할 수 있는 알파벳이 없으면 재귀함수 호출 불가능)
     // 이 부분이 없으면 인덱스에러 발생
     if (index >= alpha.size) return
-    go(n, alpha, password + alpha[index], index + 1) // i 번째 알파벳을 사용하는 경우
+    go(n, alpha, password.append(alpha[index]), index + 1) // i 번째 알파벳을 사용하는 경우
+    password.setLength(password.length - 1)
     go(n, alpha, password, index + 1) // i 번째 알파벳을 사용하지 않는 경우
 }
 
-fun check(password: String): Boolean {
+fun check(password: StringBuilder): Boolean {
     var ja = 0
     var mo = 0
     for (x in password) {
