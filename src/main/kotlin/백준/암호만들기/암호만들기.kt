@@ -22,9 +22,7 @@ fun go(n: Int, alpha: List<String>, password: StringBuilder, index: Int) {
     // 정답을 찾은 경우
     if (password.length == n) {
         // check 함수는 최소 한개의 모음과 최소 두개의 자음을 검사
-        if (check(password)) {
-            println(password)
-        }
+        if (check(password)) println(password)
         return
     }
     // 불가능한 경우 (더 이상 선택할 수 있는 알파벳이 없으면 재귀함수 호출 불가능)
@@ -39,11 +37,8 @@ fun check(password: StringBuilder): Boolean {
     var ja = 0
     var mo = 0
     for (x in password) {
-        if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u') {
-            mo += 1
-        } else {
-            ja += 1
-        }
+        if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u') mo += 1
+        else ja += 1
     }
     return  mo >= 1 && ja >= 2
 }
